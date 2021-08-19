@@ -12,10 +12,9 @@ function time() {
                 }
                 time--;
                 if (time === -1) {
-                    setTimeout(() => {
-                        clearInterval(id);
-                        alert("Вы победили в конкурсе!");
-                        }, 500);
+                    clearInterval(id);
+                    alert("Вы победили в конкурсе!");
+
                 }
             }, 1000);
         }

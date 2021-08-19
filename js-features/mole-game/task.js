@@ -9,20 +9,14 @@ for (let i = 1; i < 10; i++) {
         if (getHole(i).className === "hole hole_has-mole") {
             deadCount++;
             dead.innerText = deadCount;
-            if (deadCount === 5) {
-                alert('Победа');
-                deadCount = 0;
-                lostCount = 0;
-                location.reload();
+            if (deadCount === 10) {
+                gameOver('Победа');
             }
         } else {
             lostCount++;
             lost.innerText = lostCount;
-            if (lostCount === 10) {
-                alert('Вы проиграли!');
-                deadCount = 0;
-                lostCount = 0;
-                location.reload();
+            if (lostCount === 5) {
+                gameOver('Вы проиграли!');
             }
         }
     };
@@ -30,4 +24,11 @@ for (let i = 1; i < 10; i++) {
 
 function getHole(index) {
     return document.getElementById(`hole${index}`);
+}
+
+function gameOver(text) {
+    alert(text);
+    deadCount = 0;
+    lostCount = 0;
+    location.reload();
 }
