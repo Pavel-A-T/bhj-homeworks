@@ -13,11 +13,17 @@ for (let color of colors) {
             }
             color.classList.add("color_active");
             if (attribute === 'whitesmoke') {
-                content.style.color = 'whitesmoke';
+                content.classList.remove("book_color-black");
+                content.classList.remove("book_color-gray");
+                content.classList.add("book_color-whitesmoke");
             } else if (attribute === 'black') {
-                content.style.color = 'black';
+                content.classList.remove("book_color-whitesmoke");
+                content.classList.remove("book_color-gray");
+                content.classList.add("book_color-black");
             } else {
-                content.style.color = 'gray';
+                content.classList.remove("book_color-black");
+                content.classList.remove("book_color-whitesmoke");
+                content.classList.add("book_color-gray");
             }
         } else {
             let attribute = color.getAttribute("data-bg-color");
@@ -27,11 +33,17 @@ for (let color of colors) {
                 }
                 color.classList.add("color_active");
                 if (attribute === 'white') {
-                    content.style.background = 'white';
+                    content.classList.remove("bg_color_gray");
+                    content.classList.remove("bg_color_black");
+                    content.classList.add("bg_color_white");
                 } else if (attribute === 'black') {
-                    content.style.background = 'black';
+                    content.classList.remove("bg_color_gray");
+                    content.classList.remove("bg_color_white");
+                    content.classList.add("bg_color_black");
                 } else {
-                    content.style.background = 'gray';
+                    content.classList.remove("bg_color_white");
+                    content.classList.remove("bg_color_black");
+                    content.classList.add("bg_color_gray");
                 }
 
             }
@@ -45,13 +57,11 @@ for (let item of items) {
         if (item.getAttribute("data-size") === "small") {
             deleteClass();
             item.classList.add(active);
-            book.classList.remove("book");
             book.classList.remove("font-size_big");
             book.classList.add("font-size_small");
         } else if (item.getAttribute("data-size") === "big") {
             deleteClass();
             item.classList.add(active);
-            book.classList.remove("book");
             book.classList.remove("font-size_small");
             book.classList.add("font-size_big");
         } else {
