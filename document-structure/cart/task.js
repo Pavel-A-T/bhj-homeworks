@@ -3,7 +3,6 @@ let products = document.getElementsByClassName("product");
 let cart = document.querySelector(".cart__products");
 
 
-
 for (control of controls) {
     const dec = control.querySelector(".product__quantity-control_dec");
     const inc = control.querySelector(".product__quantity-control_inc");
@@ -26,19 +25,24 @@ for (product of products) {
 
     buttonAdd.onclick = () => {
         let cartProducts = cart.querySelectorAll(".cart__product");
-        for (let item of cartProducts) {
-            if (item && item.getAttribute("data-id") === quantity) {
-                let element = item.querySelector(".cart__product-count");
-                element.textContent = String(Number(element.textContent) + Number(count.textContent));
-                count.textContent = 1;
-                return;
+        let item = Array.from(cartProducts).find((item) => {
+            if (item.getAttribute("data-id") === quantity) {
+                return item;
             }
+        });
+
+        if (item) {
+            let element = item.querySelector(".cart__product-count");
+            element.textContent = String(Number(element.textContent) + Number(count.textContent));
+            count.textContent = 1;
+            return;
         }
         let div = document.createElement("div");
         let image = document.createElement("img");
         let divChild = document.createElement("div");
         div.appendChild(image);
-        image.outerHTML = img.outerHTML;
+        image.setAttribute("src", img.getAttribute("src"));
+        image.classList.add("cart__product-image");
         div.classList.add("cart__product");
         div.setAttribute("data-id", quantity);
         divChild.classList.add("cart__product-count");
