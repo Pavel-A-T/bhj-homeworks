@@ -10,7 +10,7 @@ for (let tip of tips) {
     let textTip = tip.getAttribute("title");
     tip.onclick = () => {
         let coordinats = tip.getBoundingClientRect();
-        let top =  coordinats.bottom + 2;
+        let top = coordinats.bottom + 2;
         let left = Math.floor(coordinats.left);
 
         if (prevTop && top === prevTop && left === prevLeft) {
@@ -23,10 +23,15 @@ for (let tip of tips) {
         element.setAttribute("style", `left:${left}px;  top:${top}px;`);
         element.classList.add("tooltip_active");
         document.body.append(element);
+        window.addEventListener('scroll', () => {
+            top = tip.getBoundingClientRect().bottom + 2;
+            left = tip.getBoundingClientRect().left;
+            element.setAttribute("style", `left:${left}px;  top:${top}px;`);
+        })
         return false;
     }
 }
 
-window.addEventListener('scroll',  () => {
-    element.classList.remove("tooltip_active");
-})
+//window.addEventListener('scroll',  () => {
+//  element.classList.remove("tooltip_active");
+//})
