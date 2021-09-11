@@ -1,6 +1,6 @@
 const url = "https://netology-slow-rest.herokuapp.com/poll.php";
-let question = document.getElementById("poll__title");
-let answer = document.getElementById("poll__answers");
+const question = document.getElementById("poll__title");
+const answer = document.getElementById("poll__answers");
 const modal = document.getElementById("modal");
 const btnClose = document.getElementById("close-button");
 
