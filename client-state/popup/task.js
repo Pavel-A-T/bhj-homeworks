@@ -1,12 +1,23 @@
 const modal = document.getElementById("subscribe-modal");
 const close = document.querySelector(".modal__close_times");
-const key = "modal-key";
+const key = "modal_active";
 
-if (!localStorage.getItem(key) && localStorage.getItem(key) != "true") {
-    modal.classList.add("modal_active");
+const getCookie = (name) => {
+    const value = document.cookie;
+    const str = value.split(";").find((item) => item.startsWith(name + "="));
+    if (str && str.includes("=")) {
+        return str.split("=").pop();
+    }
+    return "";
 }
 
 close.onclick = () => {
-    modal.classList.remove("modal_active");
-    localStorage.setItem(key, "true");
+    modal.classList.remove(key);
+    document.cookie = `${key}=active`;
+}
+
+if (getCookie(key) === "active") {
+    modal.classList.remove(key);
+} else {
+    modal.classList.add(key);
 }
